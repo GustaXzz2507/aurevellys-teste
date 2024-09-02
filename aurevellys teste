@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aurévellys - Ganhe Dinheiro com E-commerce</title>
+    <script src="https://www.paypal.com/sdk/js?client-id=YOUR_TEST_CLIENT_ID"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #000;
+            color: #fff;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
+        }
+        header {
+            background: #c8102e;
+            color: #fff;
+            padding-top: 30px;
+            min-height: 70px;
+            border-bottom: #fff 3px solid;
+            text-align: center;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 2.5em;
+        }
+        .main {
+            padding: 20px;
+        }
+        .content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .content img {
+            max-width: 100%;
+            height: auto;
+        }
+        .checkout-form {
+            background: #333;
+            padding: 20px;
+            border-radius: 8px;
+        }
+        .checkout-form h2 {
+            margin-top: 0;
+            color: #c8102e;
+        }
+        .checkout-form input, .checkout-form button {
+            display: block;
+            width: 100%;
+            margin: 10px 0;
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+        }
+        .checkout-form input[type="text"] {
+            background: #444;
+            color: #fff;
+        }
+        .checkout-form button {
+            background: #c8102e;
+            color: #fff;
+            cursor: pointer;
+        }
+        footer {
+            background: #333;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+        }
+        .chat {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 250px;
+            height: 300px;
+            background: #444;
+            border-radius: 8px;
+            padding: 10px;
+            color: #fff;
+            box-shadow: 0 0 10px rgba(0,0,0,0.3);
+        }
+        .chat-header {
+            background: #c8102e;
+            padding: 10px;
+            border-radius: 8px 8px 0 0;
+            text-align: center;
+        }
+        .chat-messages {
+            height: 200px;
+            overflow-y: auto;
+            padding: 10px;
+            background: #333;
+            border-radius: 8px;
+        }
+        .chat-input {
+            margin-top: 10px;
+        }
+        .chat-input input {
+            width: calc(100% - 80px);
+            display: inline-block;
+        }
+        .chat-input button {
+            width: 70px;
+            display: inline-block;
+            background: #c8102e;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Aurévellys - Ganhe Dinheiro com E-commerce</h1>
+        </div>
+    </header>
+
+    <div class="container main">
+        <div class="content">
+            <div class="text">
+                <h2>Descubra como ganhar dinheiro online!</h2>
+                <p>Com o e-commerce, você pode construir seu próprio negócio e alcançar clientes em todo o mundo. Aprenda os segredos para montar uma loja online de sucesso e comece a gerar receita hoje mesmo.</p>
+                <p>Nosso guia completo oferece tudo o que você precisa para iniciar, desde a criação da loja até estratégias de marketing eficazes.</p>
+            </div>
+            <img src="https://via.placeholder.com/400x300" alt="E-commerce">
+        </div>
+
+        <div class="checkout-form">
+            <h2>Faça sua Compra Agora!</h2>
+            <form id="checkout-form">
+                <input type="text" id="name" placeholder="Nome Completo" required>
+                <input type="text" id="email" placeholder="E-mail" required>
+                <input type="text" id="address" placeholder="Endereço" required>
+                <!-- Aqui adicionamos o botão de pagamento do PayPal -->
+                <div id="paypal-button-container"></div>
+            </form>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Aurévellys. Todos os direitos reservados.</p>
+    </footer>
+
+    <div class="chat">
+        <div class="chat-header">Assistente Virtual</div>
+        <div class="chat-messages">
+            <p>Olá! Como posso ajudar você?</p>
+        </div>
+        <div class="chat-input">
+            <input type="text" placeholder="Digite sua mensagem...">
+            <button>Enviar</button>
+        </div>
+    </div>
+
+    <script>
+        // Configuração do PayPal com Client ID fictício
+        paypal.Buttons({
+            createOrder: function(data, actions) {
+                return actions.order.create({
+                    purchase_units: [{
+                        amount: {
+                            value: '10.00' // Valor do pagamento
+                        }
+                    }]
+                });
+            },
+            onApprove: function(data, actions) {
+                return actions.order.capture().then(function(details) {
+                    alert('Pagamento realizado com sucesso!');
+                });
+            }
+        }).render('#paypal-button-container');
+    </script>
+</body>
+</html>
